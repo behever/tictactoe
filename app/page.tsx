@@ -7,7 +7,7 @@ type Player = 'X' | 'O' | null
 
 export default function Home() {
   const [board, setBoard] = useState<Player[]>(Array(9).fill(null))
-  const [currentPlayer, setCurrentPlayer] = useState<Player>('X')
+  const [currentPlayer, setCurrentPlayer] = useState<'X' | 'O'>('X')
   const [winner, setWinner] = useState<Player>(null)
   const [winningLine, setWinningLine] = useState<number[]>([])
 
