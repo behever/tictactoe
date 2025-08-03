@@ -59,4 +59,20 @@
   .pulse-neon {
     animation: pulse-neon 2s ease-in-out infinite;
   }
+  
+  .shadow-neon-yellow {
+    box-shadow: 
+      0 0 20px #FFFF00,
+      0 0 40px #FFFF00,
+      0 0 60px #FFFF00,
+      inset 0 0 20px rgba(255, 255, 0, 0.2);
+  }
+  
+  .shadow-neon-blue {
+    box-shadow: 
+      0 0 20px #00FFF0,
+      0 0 40px #00FFF0,
+      0 0 60px #00FFF0,
+      inset 0 0 20px rgba(0, 255, 240, 0.2);
+  }
 }

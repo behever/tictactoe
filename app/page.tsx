@@ -50,6 +50,21 @@ export default function Home() {
 
   const isDraw = board.every(cell => cell !== null) && !winner
 
+  const playerColors = {
+    X: 'text-neon-yellow',
+    O: 'text-neon-blue'
+  }
+
+  const playerBorderColors = {
+    X: 'border-neon-yellow shadow-neon-yellow',
+    O: 'border-neon-blue shadow-neon-blue'
+  }
+
+  const playerHoverColors = {
+    X: 'hover:bg-neon-yellow',
+    O: 'hover:bg-neon-blue'
+  }
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 scanlines">
       {winner && <Fireworks winner={winner} />}
@@ -57,12 +72,22 @@ export default function Home() {
         <h1 className="text-6xl md:text-8xl font-bold mb-4 neon-glow text-neon-pink flicker">
           TIC TAC TOE
         </h1>
-        <p className="text-2xl text-neon-blue neon-glow">
-          {winner ? `Player ${winner} Wins!` : isDraw ? 'It\'s a Draw!' : `Player ${currentPlayer}'s Turn`}
-        </p>
+        <div className="space-y-4">
+          {!winner && !isDraw && (
+            <div className="flex items-center justify-center gap-4">
+              <span className={`text-6xl md:text-8xl font-bold ${playerColors[currentPlayer]} neon-glow pulse-neon`}>
+                {currentPlayer}
+              </span>
+              <span className="text-2xl md:text-3xl text-white">'s Turn</span>
+            </div>
+          )}
+          <p className={`text-2xl ${winner ? playerColors[winner] : 'text-neon-blue'} neon-glow`}>
+            {winner ? `Player ${winner} Wins!` : isDraw ? 'It\'s a Draw!' : ''}
+          </p>
+        </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-2 mb-8 p-4 rounded-lg box-neon-glow max-w-fit mx-auto">
+      <div className={`grid grid-cols-3 gap-2 mb-8 p-6 rounded-lg border-4 transition-all duration-300 max-w-fit mx-auto ${!winner && !isDraw ? playerBorderColors[currentPlayer] : 'border-neon-pink'} ${!winner && !isDraw ? 'shadow-lg' : ''}`}>
         {board.map((cell, index) => (
           <button
             key={index}
@@ -74,7 +99,7 @@ export default function Home() {
               transition-all duration-200
               ${winningLine.includes(index) ? 'border-neon-green' : 'border-neon-pink'}
               ${cell === 'X' ? 'text-neon-yellow' : cell === 'O' ? 'text-neon-blue' : ''}
-              ${!cell && !winner ? 'hover:bg-neon-pink hover:bg-opacity-20 hover:scale-105' : ''}
+              ${!cell && !winner ? `${playerHoverColors[currentPlayer]} hover:bg-opacity-20 hover:scale-105` : ''}
               ${cell || winner ? 'cursor-not-allowed' : 'cursor-pointer'}
               neon-glow
               bg-retro-bg
