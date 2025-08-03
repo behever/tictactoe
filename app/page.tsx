@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Fireworks from './components/Fireworks'
 
 type Player = 'X' | 'O' | null
 
@@ -51,6 +52,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 scanlines">
+      {winner && <Fireworks winner={winner} />}
       <div className="text-center mb-8">
         <h1 className="text-6xl md:text-8xl font-bold mb-4 neon-glow text-neon-pink flicker">
           TIC TAC TOE
